@@ -34,6 +34,12 @@ module FullRequestLogger
           active_record: FullRequestLogger::DataAdapters::ActiveRecordAdapter
         }.fetch(app.config.full_request_logger.data_adapter, FullRequestLogger::DataAdapters::RedisAdapter)
 
+        FullRequestLogger.model_class   = {
+          redis: FullRequestLogger::DataAdapters::RedisAdapter::FullRequestLog,
+          elasticsearch: FullRequestLogger::DataAdapters::ElastisearchAdapter::FullRequestLog,
+          active_record: FullRequestLogger::DataAdapters::ActiveRecordAdapter::FullRequestLog
+        }.fetch(app.config.full_request_logger.data_adapter, FullRequestLogger::DataAdapters::RedisAdapter::FullRequestLog)
+
         FullRequestLogger.credentials   = app.config.full_request_logger.credentials || app.credentials.full_request_logger
       end
     end
