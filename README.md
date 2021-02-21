@@ -34,7 +34,7 @@ config.full_request_logger.data_adapter   = :redis # Default is redis (Possible 
 
 ```
 
-`FullRequestLogger.model_class` returns storage class
+`FullRequestLogger.storage_class` returns storage class
 
 ## Supported Data adapters
 

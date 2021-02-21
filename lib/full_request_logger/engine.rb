@@ -34,7 +34,7 @@ module FullRequestLogger
           active_record: FullRequestLogger::DataAdapters::ActiveRecordAdapter
         }.fetch(app.config.full_request_logger.data_adapter, FullRequestLogger::DataAdapters::RedisAdapter)
 
-        FullRequestLogger.model_class   = {
+        FullRequestLogger.storage_class   = {
           redis: FullRequestLogger::DataAdapters::RedisAdapter::FullRequestLog,
           elasticsearch: FullRequestLogger::DataAdapters::ElastisearchAdapter::FullRequestLog,
           active_record: FullRequestLogger::DataAdapters::ActiveRecordAdapter::FullRequestLog
