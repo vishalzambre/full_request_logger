@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    full_request_logger (0.7)
+    full_request_logger (0.8)
       elasticsearch-persistence
       rails (>= 5.0.0)
       redis (>= 4.0)
