@@ -34,6 +34,8 @@ config.full_request_logger.data_adapter   = :redis # Default is redis (Possible 
 
 ```
 
+`FullRequestLogger.model_class` returns storage class
+
 ## Supported Data adapters
 
 * `redis` (will pick ES url from REDIS_URL environment variable)
