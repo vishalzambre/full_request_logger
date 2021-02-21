@@ -3,10 +3,11 @@ require "full_request_logger/middleware"
 require "full_request_logger/data_adapters/base_adapter"
 require "full_request_logger/data_adapters/redis_adapter"
 require "full_request_logger/data_adapters/elasticsearch_adapter"
+require "full_request_logger/data_adapters/active_record_adapter"
 require "full_request_logger/job"
 
 module FullRequestLogger
-  class Engine < Rails::Engine
+  class Engine < ::Rails::Engine
     isolate_namespace FullRequestLogger
     config.eager_load_namespaces << FullRequestLogger
 
@@ -29,7 +30,8 @@ module FullRequestLogger
         FullRequestLogger.eligibility   = app.config.full_request_logger.eligibility || true
         FullRequestLogger.data_adapter  = {
           redis: FullRequestLogger::DataAdapters::RedisAdapter,
-          elasticsearch: FullRequestLogger::DataAdapters::ElastisearchAdapter
+          elasticsearch: FullRequestLogger::DataAdapters::ElastisearchAdapter,
+          active_record: FullRequestLogger::DataAdapters::ActiveRecordAdapter
         }.fetch(app.config.full_request_logger.data_adapter, FullRequestLogger::DataAdapters::RedisAdapter)
 
         FullRequestLogger.credentials   = app.config.full_request_logger.credentials || app.credentials.full_request_logger

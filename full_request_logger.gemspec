@@ -1,6 +1,8 @@
+require_relative "lib/full_request_logger/version"
+
 Gem::Specification.new do |s|
   s.name     = 'full_request_logger'
-  s.version  = '0.3.1'
+  s.version  = FullRequestLogger::VERSION
   s.authors  = 'David Heinemeier Hansson'
   s.email    = 'david@basecamp.com'
   s.summary  = 'Make full request logs accessible via web UI'
@@ -14,7 +16,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'elasticsearch-persistence'
 
   s.add_development_dependency 'bundler', '~> 1.17'
+  s.add_development_dependency "sqlite3"
 
-  s.files      = `git ls-files`.split("\n")
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = `git ls-files -- test/*`.split("\n")
 end

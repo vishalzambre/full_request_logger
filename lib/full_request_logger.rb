@@ -1,3 +1,4 @@
+require "full_request_logger/version"
 require "full_request_logger/engine"
 
 module FullRequestLogger

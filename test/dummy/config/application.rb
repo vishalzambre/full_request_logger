@@ -1,9 +1,9 @@
 require_relative 'boot'
 
-require "action_controller/railtie"
-require "sprockets/railtie"
+require 'rails/all'
 
 Bundler.require(*Rails.groups)
+require "full_request_logger"
 
 module Dummy
   class Application < Rails::Application

@@ -1,9 +1,9 @@
 require "test_helper"
 
-class RecorderEsTest < ActiveSupport::TestCase
+class RecorderArTest < ActiveSupport::TestCase
   setup do
     FullRequestLogger::Recorder.reset_instance_cache!
-    FullRequestLogger.data_adapter = FullRequestLogger::DataAdapters::ElastisearchAdapter
+    FullRequestLogger.data_adapter = FullRequestLogger::DataAdapters::ActiveRecordAdapter
     @logger = Logger.new(StringIO.new)
     @full_request_logger = FullRequestLogger::Recorder.new.tap { |frl| frl.attach_to(@logger) }
   end
@@ -22,8 +22,6 @@ class RecorderEsTest < ActiveSupport::TestCase
 
     @full_request_logger.store("123")
 
-    # Refresh to wait some time to reflex
-    @full_request_logger.send(:data_adapter).send(:repository).refresh_index!
     assert_equal "This is an extra line\nThis is another line\nThis is yet another line", @full_request_logger.retrieve("123").body
   end
 
@@ -38,8 +36,6 @@ class RecorderEsTest < ActiveSupport::TestCase
     @logger.info "This second log"
     @full_request_logger.store("second")
 
-    # Refresh to wait some time to reflex
-    @full_request_logger.send(:data_adapter).send(:repository).refresh_index!
     assert_equal @full_request_logger.retrive_list.size, 2
   end
 end

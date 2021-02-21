@@ -1,7 +1,4 @@
-require_relative "../test/dummy/config/environment"
-require "rails/test_help"
-
-require "full_request_logger"
+require "test_helper"
 
 FullRequestLogger.enabled = true
 FullRequestLogger.eligibility = true

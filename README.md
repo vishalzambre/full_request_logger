@@ -15,6 +15,12 @@ production-levels of data, which may reveal performance or other issues that you
 gem 'full_request_logger'
 ```
 
+## If using ActiveRecord
+
+```shell
+  bundle exec rake railties:install:migrations FROM=full_request_logger
+```
+
 ## Configuration
 
 Add to development.rb and/or production.rb. Default time-to-live (TTL) for each recorded request is 10 minutes,
@@ -24,7 +30,7 @@ is the enabled setting.
 ```ruby
 config.full_request_logger.enabled        = true
 config.full_request_logger.ttl            = 1.hour
-config.full_request_logger.data_adapter   = :redis # Default is redis (Possible values :redis or :elasticsearch)
+config.full_request_logger.data_adapter   = :redis # Default is redis (Possible values :redis or :elasticsearch or :active_record)
 
 ```
 
@@ -32,6 +38,7 @@ config.full_request_logger.data_adapter   = :redis # Default is redis (Possible 
 
 * `redis` (will pick ES url from REDIS_URL environment variable)
 * `elasticsearch` (will pick ES url from ELASTICSEARCH_URL environment variable)
+* `active_record` (Will work with ActiveRecord Adapters installed in project)
 
 You can restrict which requests will be stored by setting an eligibility function that gets to evaluate the request:
 

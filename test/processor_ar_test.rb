@@ -3,10 +3,10 @@ require "test_helper"
 FullRequestLogger.enabled = true
 FullRequestLogger.eligibility = true
 
-class ProcessorRedisTest < ActiveSupport::TestCase
+class ProcessorArTest < ActiveSupport::TestCase
   setup do
     FullRequestLogger::Recorder.reset_instance_cache!
-    FullRequestLogger.data_adapter = FullRequestLogger::DataAdapters::RedisAdapter
+    FullRequestLogger.data_adapter = FullRequestLogger::DataAdapters::ActiveRecordAdapter
     @logger = Logger.new(StringIO.new)
     @full_request_logger = FullRequestLogger::Recorder.new.tap { |frl| frl.attach_to(@logger) }
     @processor = FullRequestLogger::Processor.new(ActionDispatch::Request.new({ "action_dispatch.request_id" => "123" }))

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    full_request_logger (0.3.1)
+    full_request_logger (0.7)
       elasticsearch-persistence
       rails (>= 5.0.0)
       redis (>= 4.0)
@@ -159,6 +159,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -176,6 +177,7 @@ DEPENDENCIES
   byebug
   full_request_logger!
   rake
+  sqlite3
   will_paginate
 
 BUNDLED WITH
