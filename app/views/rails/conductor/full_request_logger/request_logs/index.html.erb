@@ -34,14 +34,15 @@
     </thead>
     <tbody>
       <% @logs.each do |log| %>
+        <% request_id = log.request_id.gsub("full_request_logger/requests/", '') if log.request_id.present? %>
         <tr>
-          <td style="width: 20%;"><%= log.request_id %></td>
+          <td style="width: 20%;"><%= request_id %></td>
           <td style="width: 70%;">
             <pre><%= log.body %></pre>
           </td>
           <td style="width: 10%;">
-            <%= link_to "View Detail", rails_conductor_request_log_path(log.request_id) %> &nbsp;
-            <%= link_to "Download", rails_conductor_request_log_path(log.request_id, format: :text) %>
+            <%= link_to "View Detail", rails_conductor_request_log_path(request_id) %> &nbsp;
+            <%= link_to "Download", rails_conductor_request_log_path(request_id, format: :text) %>
           </td>
         </tr>
       <% end %>

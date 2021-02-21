@@ -40,7 +40,7 @@ class FullRequestLogger::Recorder
 
   # Returns the list of logs with request_id to show at index, supports for basic next page and search
   def retrive_list(page: 1, per_page: 50, query: nil)
-    data_adapter.all(page: 1, per_page: 50, query: nil)
+    data_adapter.all(page: 1, per_page: 50, query: query)
   end
 
   # Clears the current buffer of log messages.
