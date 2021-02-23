@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FullRequestLogger
   class Middleware
     def initialize(app)

@@ -1,44 +1,48 @@
-require "zlib"
+# frozen_string_literal: true
 
-module FullRequestLogger::DataAdapters
-  class BaseAdapter
-    def self.object
-      @object ||= new
-    end
+require 'zlib'
 
-    def write(_key)
-      raise NotImplementedError, 'subclass did not define #write'
-    end
+module FullRequestLogger
+  module DataAdapters
+    class BaseAdapter
+      def self.object
+        @object ||= new
+      end
 
-    def find(_id)
-      raise NotImplementedError, 'subclass did not define #find'
-    end
+      def write(_key)
+        raise NotImplementedError, 'subclass did not define #write'
+      end
 
-    def all(_page: 1, _per_page: 50, _query: nil)
-      raise NotImplementedError, 'subclass did not define #all'
-    end
+      def find(_id)
+        raise NotImplementedError, 'subclass did not define #find'
+      end
 
-    def clear
-      raise NotImplementedError, 'subclass did not define #clear'
-    end
+      def all(_page: 1, _per_page: 50, _query: nil)
+        raise NotImplementedError, 'subclass did not define #all'
+      end
 
-    def close; end
+      def clear
+        raise NotImplementedError, 'subclass did not define #clear'
+      end
 
-    def request_key(id)
-      "full_request_logger/requests/#{id}"
-    end
+      def close; end
 
-    def compress(text)
-      Zlib::Deflate.deflate(text)
-    end
+      def request_key(id)
+        "full_request_logger/requests/#{id}"
+      end
 
-    def uncompress(text)
-      Zlib::Inflate.inflate(text)
-    end
+      def compress(text)
+        Zlib::Deflate.deflate(text)
+      end
 
-    class FullRequestLog < OpenStruct
-      def to_hash
-        to_h
+      def uncompress(text)
+        Zlib::Inflate.inflate(text)
+      end
+
+      class FullRequestLog < OpenStruct
+        def to_hash
+          to_h
+        end
       end
     end
   end

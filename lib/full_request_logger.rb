@@ -1,5 +1,7 @@
-require "full_request_logger/version"
-require "full_request_logger/engine"
+# frozen_string_literal: true
+
+require 'full_request_logger/version'
+require 'full_request_logger/engine'
 
 module FullRequestLogger
   extend ActiveSupport::Autoload
